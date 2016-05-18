@@ -1,0 +1,14 @@
+
+
+    <ul class="pagination">
+        <li><button class="buttonred" ng-click="firstPage()">«</button></li>
+        <li><button class="buttonred" ng-click="prevPage()">&lt;</button></li>
+        <li ng-repeat="number in paginationItems">
+            <button  ng-if="number == activePage" class="buttonlac">{{number}}</button>
+            <button  ng-if="number != activePage" class="buttondefault" ng-click="changePage(number)">{{number}}</button>
+        <li><button class="buttonred" ng-click="nextPage()">&gt;</button></li>
+        <li><button class="buttonred" ng-click="lastPage()">»</button></li>
+        </li>
+    </ul>
+
+
