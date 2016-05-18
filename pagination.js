@@ -2,7 +2,7 @@
  * Created by nuri on 13.05.2016.
  */
 
-angular.module('safirDepoApp')
+angular.module('PaginationApp')
     .directive('ngPagination', function () {
         return {
             restrict: 'EA',
@@ -13,7 +13,7 @@ angular.module('safirDepoApp')
                 onPageChange:'&'
             },
             replace: true,
-            templateUrl :'view/pagination/pagination.html',
+            templateUrl :'pagination.html',
             controller: function($scope) {
                 var scope= $scope;
                 $scope.paginationItems= [];
@@ -24,15 +24,12 @@ angular.module('safirDepoApp')
 
                 scope.$watch("maxPageSize",function(newValue,oldValue) {
                     scope.activePage=1;
-                    //$scope.maxPageSize=newValue;
                     initializePagination();
                 });
                 scope.$watch("activePage",function(newValue,oldValue) {
 
                     scope.activePage=newValue;
                     scope.onPageChange();
-
-                    //initializePagination();
                 });
 
 
@@ -51,7 +48,6 @@ angular.module('safirDepoApp')
                 }
 
                 function initializePagination() {
-                   // $scope.onPageChange();
                     $scope.paginationItems.splice(0);
                     pager($scope.activePage,$scope.maxPageSize );
                 }
@@ -59,19 +55,16 @@ angular.module('safirDepoApp')
                 scope.changePage=function(pageNumber){
                    
                     scope.activePage=pageNumber;
-                   // scope.onPageChange();
                    initializePagination();
                 };
 
                 scope.firstPage=function(){
                     scope.activePage=1;
-                    //scope.onPageChange();
                     initializePagination();
                 };
 
                 scope.lastPage=function(){
                     scope.activePage=scope.maxPageSize;
-                   // scope.onPageChange();
                     initializePagination();
                 };
 
@@ -79,13 +72,11 @@ angular.module('safirDepoApp')
 
                     scope.activePage--;
                     if (scope.activePage<1) scope.activePage=1;
-                   // scope.onPageChange();
                     initializePagination();
                 };
 
                 scope.nextPage=function(){
                     scope.activePage++;
-                    //scope.onPageChange();
                     if (scope.activePage>scope.maxPageSize)
                         scope.activePage=scope.maxPageSize;
                     initializePagination();
